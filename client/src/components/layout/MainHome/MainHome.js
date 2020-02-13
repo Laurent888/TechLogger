@@ -3,7 +3,6 @@ import "./MainHome.scss";
 import Shortcut from "./Shortcut/Shortcut";
 
 const MainHome = props => {
-  console.log(props);
   return (
     <div className="main-home">
       <h1 className="main-home-title">Welcome</h1>

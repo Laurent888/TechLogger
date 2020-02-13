@@ -5,6 +5,7 @@
   "main": "server.js",
   "dependencies": {
     "bcrypt": "^3.0.8",
+    "concurrently": "^5.1.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
@@ -14,7 +15,8 @@
   "devDependencies": {},
   "scripts": {
     "start": "node server.js",
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "dev": "concurrently \"nodemon server.js\" \"cd client && npm start\""
   },
   "author": "",
   "license": "ISC"

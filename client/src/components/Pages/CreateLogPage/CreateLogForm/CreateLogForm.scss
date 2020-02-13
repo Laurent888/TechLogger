@@ -1,0 +1,99 @@
+@import "../../../../variables";
+
+.createLogForm {
+  border: 1px solid $grey-light;
+  border-radius: 4px;
+}
+
+.createLogForm,
+.createLogForm-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: $white-background;
+  width: 100%;
+  max-width: 120rem;
+  padding: 3rem;
+
+  button {
+    margin-left: auto;
+  }
+
+  &-title {
+    color: $grey-dark;
+  }
+
+  .form-group {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    padding: 2rem 0;
+
+    label {
+      width: 15%;
+    }
+
+    input,
+    textarea {
+      width: 85%;
+      border: 1px solid $grey-medium;
+      border-radius: 4px;
+
+      &:focus {
+        outline: 1px solid $primary-color;
+        box-shadow: 0 0 4px $primary-color;
+        background-color: rgba(255, 254, 168, 0.301);
+      }
+    }
+
+    input {
+      padding: 0.5rem;
+      max-width: 70rem;
+    }
+
+    textarea {
+      padding: 0.5rem;
+      font-weight: 400;
+      color: $grey-dark;
+      font-size: 1.6rem;
+      height: 20rem;
+      font-family: "Lato", sans-serif;
+    }
+  }
+
+  .form-group-select {
+    width: 70%;
+    padding-top: 3rem;
+    border-top: 1px solid $grey-light;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    &_item {
+      min-width: 20rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    label {
+      color: $grey-medium;
+      letter-spacing: 1px;
+    }
+
+    select {
+      padding: 0.7rem 1.6rem;
+      border-radius: 4px;
+      text-transform: capitalize;
+      letter-spacing: 1px;
+      margin-left: 2rem;
+
+      &:focus {
+        outline: 1px solid $primary-color;
+        box-shadow: 0 0 2px $primary-color;
+      }
+    }
+  }
+}

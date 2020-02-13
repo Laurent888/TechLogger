@@ -14,21 +14,24 @@ const logSchema = new mongoose.Schema({
     required: true
   },
   category: {
-    type: String
+    type: String,
+    required: true
   },
-  createAt: {
+  createdAt: {
     type: Date,
     default: Date.now
   },
-  dueDte: {
-    type: Date
+  dueDate: {
+    type: Date,
+    default: Date.now
   },
   open: {
     type: Boolean,
     default: true
   },
   assignee: {
-    type: String
+    type: String,
+    required: true
   }
 });
 

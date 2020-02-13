@@ -1,0 +1,30 @@
+@import "../../../../variables";
+
+.table-header {
+  text-align: left;
+  color: $primary-color;
+  border-bottom: 2px solid $grey-light;
+
+  th {
+    padding: 1rem 2rem;
+
+    &:hover {
+      background-color: rgba(223, 126, 62, 0.253);
+      cursor: pointer;
+    }
+  }
+
+  .assignee,
+  .registered {
+    min-width: 20rem;
+  }
+
+  .priority {
+    min-width: 15rem;
+  }
+
+  .created,
+  .due {
+    min-width: 15rem;
+  }
+}
