@@ -1,0 +1,15 @@
+@import "../../../variables";
+
+.mainPage {
+  width: 100vw;
+  height: 100vh;
+  background-color: $light-background;
+  padding: 5rem;
+  display: flex;
+  justify-content: flex-end;
+
+  &-container {
+    width: calc(100% - 250px);
+    height: 100%;
+  }
+}

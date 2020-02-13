@@ -1,0 +1,11 @@
+@import "../../../variables";
+
+.main-home {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem;
+  background-color: $white-background;
+  color: $black;
+  width: 70%;
+  height: 50rem;
+}
