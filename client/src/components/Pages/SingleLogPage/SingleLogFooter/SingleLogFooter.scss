@@ -11,6 +11,11 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  transition: height 0.1s ease-in-out;
+
+  &.open {
+    height: 30rem;
+  }
 
   &_statusChange {
     margin: 0 5rem;
@@ -29,6 +34,10 @@
       color: $primary-color;
       cursor: pointer;
       box-shadow: 0 0 3px rgba(223, 126, 62, 0.479);
+    }
+
+    &.hide {
+      display: none;
     }
   }
 }

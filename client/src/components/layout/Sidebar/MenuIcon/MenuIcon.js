@@ -9,7 +9,7 @@ const MenuIcon = props => {
 
   return (
     <div className="menuIcon" onClick={toggleMenu}>
-      <div className={`menuIcon-bar ${isMenuOpen && "arrow"}`}></div>
+      <div className={`menuIcon-bar ${isMenuOpen && "arrow-right"}`}></div>
     </div>
   );
 };

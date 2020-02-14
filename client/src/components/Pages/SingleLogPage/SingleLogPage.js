@@ -4,9 +4,10 @@ import LogDetails from "./LogDetails/LogDetails";
 import SingleLogFooter from "./SingleLogFooter/SingleLogFooter";
 // Import Redux
 import { connect } from "react-redux";
+import { toggleChangeStatusMenu } from "../../../redux/ui/uiActions";
 
 const SingleLogPage = props => {
-  const { allLogs, match } = props;
+  const { allLogs, match, isChangeStatusMenu, toggleChangeStatusMenu } = props;
   const logId = match.params.id;
 
   // Local state
@@ -14,9 +15,15 @@ const SingleLogPage = props => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
+    console.log(isLoading);
     const singleLog = allLogs.find(item => item._id === logId);
-    setLog(singleLog, setIsLoading(false));
-  }, []);
+    console.log(singleLog);
+    setLog(singleLog, () => {
+      setIsLoading(false);
+      console.log(isLoading);
+    });
+  }, [isLoading]);
 
   return (
     <div className="singleLogPage">
@@ -26,7 +33,10 @@ const SingleLogPage = props => {
       ) : (
         <Fragment>
           <LogDetails details={{ ...log }} />
-          <SingleLogFooter />
+          <SingleLogFooter
+            menuOpen={isChangeStatusMenu}
+            clicked={toggleChangeStatusMenu}
+          />
         </Fragment>
       )}
     </div>
@@ -34,7 +44,12 @@ const SingleLogPage = props => {
 };
 
 const mapStateToProps = state => ({
-  allLogs: state.logs.allLogs
+  allLogs: state.logs.allLogs,
+  isChangeStatusMenu: state.ui.isChangeStatusOpen
 });
 
-export default connect(mapStateToProps)(SingleLogPage);
+const mapDispatchToProps = dispatch => ({
+  toggleChangeStatusMenu: () => dispatch(toggleChangeStatusMenu)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SingleLogPage);

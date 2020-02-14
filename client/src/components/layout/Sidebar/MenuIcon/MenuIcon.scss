@@ -53,5 +53,9 @@
         transform: translateX(-2.1px) translateY(0.6rem) rotate(45deg);
       }
     }
+
+    .menuIcon-bar.arrow-right {
+      transform: rotate(180deg);
+    }
   }
 }

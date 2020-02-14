@@ -49,15 +49,14 @@ body {
   }
 }
 .btn-secondary {
-  background-color: none;
-  border: 2px solid $grey-medium;
+  background-color: transparent;
+  border: 2px solid rgb(226, 144, 77);
   font-weight: 700;
   color: $primary-color;
   transition: $transition-btn;
   &:hover{
-    background-color: rgba(223, 126, 62, 0.281);
+    background-color: rgba(223, 126, 62, 0.082);
     border: 2px solid $primary-color;
-    box-shadow: 0 0 7px rgba(223, 126, 62, 0.281);
   }
 }
 

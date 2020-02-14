@@ -4,12 +4,23 @@ import UserIcon from "../../../UserIcon/UserIcon";
 
 const LogDetails = ({ details }) => {
   console.log(details);
-  const { description, priority, assignee, category } = details;
+  const {
+    description,
+    priority,
+    assignee,
+    category,
+    createdAt,
+    dueDate
+  } = details;
+
+  const createdDate = createdAt.substring(0, 10);
+  const createdTime = createdAt.substring(11, 16);
+
   return (
     <div>
       <div className="logDetails-dueDate mt-3 pb-1">
         <div className="logDetails-dueDate-label pr-1">Due Date: </div>
-        <div className="logDetails-dueDate-date mr-2"> 25/13/2020</div>
+        <div className="logDetails-dueDate-date mr-2"> {dueDate}</div>
         <div className="logDetails-dueDate-status mr-2">Open</div>
       </div>
       <div className="logDetails">
@@ -17,7 +28,9 @@ const LogDetails = ({ details }) => {
           <UserIcon />
           <div className="logDetails_header-details ml-1">
             <h4>John Smith</h4>
-            <p className="logDetails_header-date">Created 25/02/2012</p>
+            <p className="logDetails_header-date">
+              Created {createdDate} {createdTime}
+            </p>
           </div>
         </div>
         <div className="logDetails_description mt-2">

@@ -1,7 +1,8 @@
 import { types } from "./uiTypes";
 
 const INITIAL_STATE = {
-  isMenuOpen: false
+  isMenuOpen: false,
+  isChangeStatusOpen: false
 };
 
 const uiReducer = (state = INITIAL_STATE, action) => {
@@ -10,6 +11,11 @@ const uiReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isMenuOpen: !state.isMenuOpen
+      };
+    case types.TOGGLE_CHANGE_STATUS_MENU:
+      return {
+        ...state,
+        isChangeStatusOpen: !state.isChangeStatusOpen
       };
     default:
       return state;

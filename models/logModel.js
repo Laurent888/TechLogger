@@ -22,12 +22,12 @@ const logSchema = new mongoose.Schema({
     default: Date.now
   },
   dueDate: {
-    type: Date,
-    default: Date.now
+    type: String,
+    required: true
   },
   open: {
-    type: Boolean,
-    default: true
+    type: String,
+    default: "open"
   },
   assignee: {
     type: String,
