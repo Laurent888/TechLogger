@@ -2,13 +2,13 @@ import React from "react";
 import "./LogPage.scss";
 import LogPreview from "./LogPreview/LogPreview";
 import TableHeader from "./TableHeader/TableHeader";
+// Redux Import
 import { connect } from "react-redux";
 
-const LogPage = ({ allLogs }) => {
+const LogPage = ({ allLogs, match }) => {
   const renderedLogs = allLogs.map(log => (
-    <LogPreview key={log._id} props={{ ...log }} />
+    <LogPreview key={log._id} props={{ ...log }} path={match.path} />
   ));
-  console.log(renderedLogs);
   return (
     <div>
       <h1>Logs</h1>
@@ -19,6 +19,9 @@ const LogPage = ({ allLogs }) => {
             {renderedLogs}
           </tbody>
         </table>
+        {renderedLogs.length === 0 && (
+          <h2 className="noLogs mt-3">There is no logs !</h2>
+        )}
       </div>
     </div>
   );

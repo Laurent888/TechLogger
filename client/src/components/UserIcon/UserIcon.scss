@@ -1,0 +1,16 @@
+@import "../../variables";
+
+.userIcon {
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $user-icon;
+  border-radius: 50%;
+
+  i {
+    color: $white-background;
+    font-size: 2rem;
+  }
+}

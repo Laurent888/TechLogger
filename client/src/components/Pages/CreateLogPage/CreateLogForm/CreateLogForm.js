@@ -56,10 +56,10 @@ const CreateLogForm = ({ addLog }) => {
           <div className="form-group-select_item">
             <label htmlFor="priority">Priority</label>
             <select id="priority" name="priority" onChange={handleChange}>
-              <option value="critical">critical</option>
-              <option value="high">high</option>
-              <option value="normal">normal</option>
-              <option value="low">low</option>
+              <option value="critical">Critical</option>
+              <option value="high">High</option>
+              <option value="normal">Normal</option>
+              <option value="low">Low</option>
             </select>
           </div>
           <div className="form-group-select_item">
