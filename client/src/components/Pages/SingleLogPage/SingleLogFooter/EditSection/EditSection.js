@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "./EditSection.scss";
+// IMPORT REDUX
 import { toggleChangeStatusMenu } from "../../../../../redux/ui/uiActions";
+import { editLog } from "../../../../../redux/logs/logsActions";
 import { connect } from "react-redux";
 
 const EditSection = props => {
-  const { toggleChangeStatusMenu } = props;
+  const { toggleChangeStatusMenu, currentLog, editLogAction } = props;
   const [editLog, setEditLog] = useState({
     status: "",
     assignee: ""
@@ -17,9 +19,23 @@ const EditSection = props => {
     });
   };
 
+  const handleEdit = e => {
+    e.preventDefault();
+
+    if (editLog.status === "" || editLog.assignee === "") {
+      return window.alert("All fields are required");
+    }
+    const editData = {
+      status: editLog.status,
+      assignee: editLog.assignee,
+      id: currentLog._id
+    };
+    editLogAction(editData);
+  };
+
   return (
     <div className="editSection mr-2">
-      <form className="editSection-form ">
+      <form className="editSection-form" onSubmit={handleEdit}>
         <div className="form-group mb-1">
           <label htmlFor="status">Status</label>
           <select
@@ -28,6 +44,7 @@ const EditSection = props => {
             value={editLog.status}
             onChange={handleChange}
           >
+            <option value=""></option>
             <option value="open">Open</option>
             <option value="progress">In Progress</option>
             <option value="resolved">Resolved</option>
@@ -64,7 +81,12 @@ const EditSection = props => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  toggleChangeStatusMenu: () => dispatch(toggleChangeStatusMenu)
+  toggleChangeStatusMenu: () => dispatch(toggleChangeStatusMenu),
+  editLogAction: log => dispatch(editLog(log))
 });
 
-export default connect(null, mapDispatchToProps)(EditSection);
+const mapStateToProps = state => ({
+  currentLog: state.logs.currentLog
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditSection);

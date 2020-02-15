@@ -25,7 +25,7 @@ const logSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  open: {
+  status: {
     type: String,
     default: "open"
   },

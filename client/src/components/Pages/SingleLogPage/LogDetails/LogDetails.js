@@ -1,18 +1,20 @@
 import React from "react";
 import "./LogDetails.scss";
 import UserIcon from "../../../UserIcon/UserIcon";
+import { defineRiskColor } from "../../../../utils/utils";
 
 const LogDetails = ({ details }) => {
-  console.log(details);
   const {
     description,
     priority,
     assignee,
     category,
     createdAt,
-    dueDate
+    dueDate,
+    status
   } = details;
 
+  // FORMATE DATE TO YYYY-MM-DD
   const createdDate = createdAt.substring(0, 10);
   const createdTime = createdAt.substring(11, 16);
 
@@ -21,7 +23,7 @@ const LogDetails = ({ details }) => {
       <div className="logDetails-dueDate mt-3 pb-1">
         <div className="logDetails-dueDate-label pr-1">Due Date: </div>
         <div className="logDetails-dueDate-date mr-2"> {dueDate}</div>
-        <div className="logDetails-dueDate-status mr-2">Open</div>
+        <div className="logDetails-dueDate-status mr-2">{status}</div>
       </div>
       <div className="logDetails">
         <div className="logDetails_header">
@@ -48,7 +50,9 @@ const LogDetails = ({ details }) => {
           </div>
           <div className="logDetails_categories-priority">
             <div className="logDetails_categories-label">Priority </div>
-            <div className="badge-danger">{priority}</div>
+            <div className={`badge-${defineRiskColor(priority)}`}>
+              {priority}
+            </div>
           </div>
         </div>
       </div>

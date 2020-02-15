@@ -8,6 +8,6 @@ logRouter
   .get(logController.getAllLogs)
   .post(logController.createLog)
   .delete(logController.deleteLog)
-  .patch(logController.updateLog);
+  .put(logController.updateLog);
 
 module.exports = logRouter;

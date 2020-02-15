@@ -1,6 +1,7 @@
 import React from "react";
 import "./LogPreview.scss";
 import { useHistory } from "react-router-dom";
+import { defineRiskColor } from "../../../../utils/utils";
 
 const LogPreview = ({ props, path }) => {
   const {
@@ -15,6 +16,9 @@ const LogPreview = ({ props, path }) => {
   } = props;
   const history = useHistory();
 
+  // Format date to YYYY-MM-DD
+  const createdDate = createdAt.toString().substring(0, 10);
+
   const handleClick = () => {
     history.push(`${path}/${_id}`);
   };
@@ -25,23 +29,9 @@ const LogPreview = ({ props, path }) => {
       <td className="logPreview_item">{subject}</td>
       <td className="logPreview_item assignee">{assignee}</td>
       <td className="logPreview_item">
-        <div
-          className={`badge-${
-            priority === "critical"
-              ? "critical"
-              : priority === "high"
-              ? "danger"
-              : priority === "medium"
-              ? "warning"
-              : priority === "normal"
-              ? "blue"
-              : "success"
-          }`}
-        >
-          {priority}
-        </div>
+        <div className={`badge-${defineRiskColor(priority)}`}>{priority}</div>
       </td>
-      <td className="logPreview_item">{createdAt}</td>
+      <td className="logPreview_item">{createdDate}</td>
       <td className="logPreview_item">{dueDate}</td>
       <td className="logPreview_item">{registeredBy}</td>
     </tr>

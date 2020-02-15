@@ -45,9 +45,12 @@ exports.deleteLog = async (req, res) => {
 exports.updateLog = async (req, res) => {
   try {
     const updatedLog = req.body;
-    await Log.findOneAndUpdate(updatedLog.id, updatedLog);
+    const data = await Log.findByIdAndUpdate(updatedLog.id, updatedLog, {
+      new: true
+    });
     res.status(200).json({
-      message: "Log updated successfully"
+      message: "Log updated successfully",
+      data: data
     });
   } catch (err) {
     res.status(400).json({

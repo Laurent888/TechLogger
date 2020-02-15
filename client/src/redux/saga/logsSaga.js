@@ -9,7 +9,6 @@ function* addLog() {
 
 function* addLogAsync(log) {
   const payload = log.payload;
-  console.log(payload);
   yield axios
     .post("/api/log", payload)
     .then(() => console.log("Log added"))
@@ -17,6 +16,23 @@ function* addLogAsync(log) {
 }
 
 // DELETE LOG
+
+// EDIT LOG
+function* editLog() {
+  yield takeLatest(types.EDIT_LOG_START, editLogAsync);
+}
+
+function* editLogAsync(log) {
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+  const body = log.payload;
+  const response = yield axios.put("/api/log", body, config);
+  yield console.log(response.data.data);
+  yield put({ type: types.EDIT_LOG_SUCCESS, payload: response.data.data });
+}
 
 // FETCH ALL THE LOGS
 function* fetchLogs() {
@@ -37,5 +53,5 @@ function* fetchLogsAsync() {
 
 // ROOT SAGA
 export default function* rootSaga() {
-  yield all([fetchLogs(), addLog()]);
+  yield all([fetchLogs(), addLog(), editLog()]);
 }

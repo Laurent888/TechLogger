@@ -5,9 +5,16 @@ import SingleLogFooter from "./SingleLogFooter/SingleLogFooter";
 // Import Redux
 import { connect } from "react-redux";
 import { toggleChangeStatusMenu } from "../../../redux/ui/uiActions";
+import { setCurrentLog } from "../../../redux/logs/logsActions";
 
 const SingleLogPage = props => {
-  const { allLogs, match, isChangeStatusMenu, toggleChangeStatusMenu } = props;
+  const {
+    allLogs,
+    match,
+    isChangeStatusMenu,
+    toggleChangeStatusMenu,
+    setCurrentLog
+  } = props;
   const logId = match.params.id;
 
   // Local state
@@ -16,14 +23,13 @@ const SingleLogPage = props => {
 
   useEffect(() => {
     setIsLoading(true);
-    console.log(isLoading);
-    const singleLog = allLogs.find(item => item._id === logId);
-    console.log(singleLog);
-    setLog(singleLog, () => {
-      setIsLoading(false);
-      console.log(isLoading);
-    });
-  }, [isLoading]);
+
+    if (allLogs.length > 0) {
+      const singleLog = allLogs.find(item => item._id === logId);
+      setLog(singleLog, setIsLoading(false));
+      setCurrentLog(singleLog);
+    }
+  }, [allLogs]);
 
   return (
     <div className="singleLogPage">
@@ -49,7 +55,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  toggleChangeStatusMenu: () => dispatch(toggleChangeStatusMenu)
+  toggleChangeStatusMenu: () => dispatch(toggleChangeStatusMenu),
+  setCurrentLog: log => dispatch(setCurrentLog(log))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleLogPage);
