@@ -21,6 +21,10 @@ const logSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
+  createBy: {
+    type: String,
+    required: [true, "Created by required"]
+  },
   dueDate: {
     type: String,
     required: true

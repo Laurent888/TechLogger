@@ -18,6 +18,22 @@
     font-weight: 300;
   }
 
+  .message {
+    width: 60%;
+    padding: 1rem 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(69, 160, 69);
+    color: $white-background;
+    text-align: center;
+
+    a {
+      margin-left: 1rem;
+      color: $white-background;
+      text-decoration: underline;
+    }
+  }
+
   .group-form {
     display: flex;
     flex-direction: column;

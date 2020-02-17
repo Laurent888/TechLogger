@@ -19,7 +19,7 @@ const MainHome = ({ allLogs }) => {
       <h1 className="main-home-title mb-3">Welcome</h1>
       <div className="main-home-content">
         <p>
-          You have <span>{numberLogs}</span> logs in total
+          Your team have <span>{numberLogs}</span> logs in total
         </p>
         <div className="main-home-content_risks mt-3 mb-3">
           <div className="main-home-content_risks-item">

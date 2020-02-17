@@ -12,16 +12,26 @@ import { logoutUser } from "../../../redux/user/userActions";
 import { connect } from "react-redux";
 
 const MainPage = props => {
-  const { fetchAllData, logoutUser } = props;
+  const { fetchAllData, logoutUser, currentUser } = props;
   useEffect(() => {
     fetchAllData();
   }, []);
+
+  const handleLogout = () => {
+    logoutUser();
+    localStorage.removeItem("currentUser");
+  };
+
   return (
     <div className="mainPage">
       <Sidebar />
-      <div onClick={logoutUser} className="btn btn-secondary log-out">
-        Log out <span className="mdi mdi-logout" />{" "}
+      <div className="log-out">
+        <div className="log-out_name">Hello, {currentUser.userName}</div>
+        <div onClick={handleLogout} className="btn btn-secondary">
+          Log out <span className="mdi mdi-logout" />
+        </div>
       </div>
+
       <div className="mainPage-container">
         <Switch>
           <Route exact path={`${props.match.path}/`} component={MainHome} />
@@ -38,9 +48,13 @@ const MainPage = props => {
   );
 };
 
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser
+});
+
 const mapDispatchToProps = dispatch => ({
   fetchAllData: () => dispatch(fetchAllData),
   logoutUser: () => dispatch(logoutUser)
 });
 
-export default connect(null, mapDispatchToProps)(MainPage);
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

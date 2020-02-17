@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { addLog } from "../../../../redux/logs/logsActions";
 import Calendar from "react-calendar";
 
-const CreateLogForm = ({ addLog }) => {
+const CreateLogForm = ({ addLog, currentUser }) => {
   const [log, setLog] = useState({
     subject: "",
     description: "",
@@ -54,7 +54,11 @@ const CreateLogForm = ({ addLog }) => {
       }, 3000);
       return;
     }
-    addLog(log);
+    const newLog = {
+      ...log,
+      createdBy: currentUser.userName
+    };
+    addLog(newLog);
     setLog({
       subject: "",
       description: "",
@@ -169,8 +173,12 @@ const CreateLogForm = ({ addLog }) => {
   );
 };
 
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser
+});
+
 const mapDispatchToProps = dispatch => ({
   addLog: log => dispatch(addLog(log))
 });
 
-export default connect(null, mapDispatchToProps)(CreateLogForm);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateLogForm);

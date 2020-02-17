@@ -13,7 +13,7 @@ function* addLogAsync(log) {
   yield axios
     .post("/api/log", payload)
     .then(() => console.log("Log added"))
-    .catch(err => console.log(err));
+    .catch(err => console.log(err.response.data));
 }
 
 // DELETE LOG

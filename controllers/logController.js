@@ -13,6 +13,7 @@ exports.getAllLogs = async (req, res) => {
   }
 };
 exports.createLog = async (req, res) => {
+  console.log(req.body);
   try {
     const newLog = new Log(req.body);
 
