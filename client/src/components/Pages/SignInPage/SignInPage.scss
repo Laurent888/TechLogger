@@ -1,0 +1,77 @@
+@import "../../../variables";
+
+.signin-contained {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10rem;
+
+  h1 {
+    font-family: "Permanent Marker", cursive;
+    color: $primary-color;
+    font-size: 4rem;
+  }
+
+  .subtitle {
+    color: $grey-medium;
+    font-weight: 300;
+  }
+
+  .group-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    input {
+      width: 50rem;
+      height: 5rem;
+      padding: 0.5rem;
+      border: 2px solid $grey-light;
+      border-radius: 5px;
+      font-size: 2rem;
+      color: $grey-dark;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .signin-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    label {
+      color: $grey-medium;
+    }
+    .login {
+      padding: 1rem 3rem;
+      border-radius: 5px;
+      background-color: $primary-color;
+      color: $white-background;
+      font-size: 2.5rem;
+      font-weight: 400;
+      border: none;
+      letter-spacing: 1px;
+
+      &:hover {
+        cursor: pointer;
+        opacity: 0.9;
+      }
+    }
+  }
+
+  .signup-link {
+    color: $grey-dark;
+
+    a {
+      color: $primary-color;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

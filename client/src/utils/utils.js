@@ -17,3 +17,23 @@ export const defineRiskColor = risk => {
   console.log(color);
   return color;
 };
+
+export const defineStatusColor = status => {
+  let color = "";
+  switch (status) {
+    case "open":
+      color = "success";
+      break;
+    case "progress":
+      color = "blue";
+      break;
+    case "resolved":
+      color = "warning";
+      break;
+    case "closed":
+      color = "danger";
+      break;
+  }
+  console.log(color);
+  return color;
+};

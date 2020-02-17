@@ -7,9 +7,16 @@
   padding: 5rem;
   display: flex;
   justify-content: flex-end;
+  position: relative;
 
   &-container {
     width: calc(100% - 250px);
     height: 100%;
+  }
+
+  .log-out {
+    position: absolute;
+    right: 2rem;
+    top: 1rem;
   }
 }

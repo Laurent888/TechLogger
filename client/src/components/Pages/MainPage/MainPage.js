@@ -8,17 +8,20 @@ import { Route, Switch } from "react-router-dom";
 import SingleLogPage from "../SingleLogPage/SingleLogPage";
 // Redux
 import { fetchAllData } from "../../../redux/logs/logsActions";
+import { logoutUser } from "../../../redux/user/userActions";
 import { connect } from "react-redux";
 
 const MainPage = props => {
-  const { fetchAllData } = props;
+  const { fetchAllData, logoutUser } = props;
   useEffect(() => {
     fetchAllData();
   }, []);
-
   return (
     <div className="mainPage">
       <Sidebar />
+      <div onClick={logoutUser} className="btn btn-secondary log-out">
+        Log out <span className="mdi mdi-logout" />{" "}
+      </div>
       <div className="mainPage-container">
         <Switch>
           <Route exact path={`${props.match.path}/`} component={MainHome} />
@@ -36,7 +39,8 @@ const MainPage = props => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchAllData: () => dispatch(fetchAllData)
+  fetchAllData: () => dispatch(fetchAllData),
+  logoutUser: () => dispatch(logoutUser)
 });
 
 export default connect(null, mapDispatchToProps)(MainPage);

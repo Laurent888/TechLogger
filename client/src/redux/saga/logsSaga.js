@@ -1,6 +1,7 @@
 import { takeLatest, put, all } from "redux-saga/effects";
 import axios from "axios";
 import { types } from "../logs/logsTypes";
+import { signInUser } from "./userSaga";
 
 // ADD LOG
 function* addLog() {
@@ -36,7 +37,6 @@ function* editLogAsync(log) {
 
 // FETCH ALL THE LOGS
 function* fetchLogs() {
-  yield console.log("hello from saga");
   yield takeLatest(types.FETCH_ALL_LOGS_START, fetchLogsAsync);
 }
 
@@ -53,5 +53,5 @@ function* fetchLogsAsync() {
 
 // ROOT SAGA
 export default function* rootSaga() {
-  yield all([fetchLogs(), addLog(), editLog()]);
+  yield all([fetchLogs(), addLog(), editLog(), signInUser()]);
 }
