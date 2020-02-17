@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./SignInPage.scss";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import FormInput from "../../FormInput/FormInput";
 // IMPORT REDUX
 import { connect } from "react-redux";
 import { setCurrentUser } from "../../../redux/user/userActions";
@@ -11,7 +11,7 @@ const SignInPage = ({ setCurrentUser }) => {
     email: "",
     password: ""
   });
-  const [error, setError] = useState("");
+  const [uiMessage, setUiMessage] = useState("");
 
   const handleChange = e => {
     setLogin({
@@ -24,7 +24,10 @@ const SignInPage = ({ setCurrentUser }) => {
     e.preventDefault();
 
     if (login.email === "" || login.password === "") {
-      return setError("All fields are required");
+      return setUiMessage(
+        "All fields are required",
+        setTimeout(() => setUiMessage(""), 4000)
+      );
     }
 
     const userLogin = {
@@ -43,31 +46,23 @@ const SignInPage = ({ setCurrentUser }) => {
           <h2 className="subtitle mt-2 mb-2">
             Log in to your Tech Logger account
           </h2>
+          {/* INFORMATION MESSAGE */}
+          {uiMessage && <div className="message mt-2 mb-2">{uiMessage}</div>}
           <form className="signin-form mt-2" onSubmit={handleSubmit}>
-            <div className="group-form mb-1">
-              <label htmlFor="email" className="mb-1">
-                Email
-              </label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                value={login.email}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="group-form mb-1">
-              <label htmlFor="password" className="mb-1">
-                Password
-              </label>
-              <input
-                type="password"
-                name="password"
-                id="password"
-                value={login.password}
-                onChange={handleChange}
-              />
-            </div>
+            <FormInput
+              type="email"
+              name="email"
+              value={login.email}
+              handleChange={handleChange}
+              label="Email"
+            />
+            <FormInput
+              type="password"
+              name="password"
+              value={login.password}
+              handleChange={handleChange}
+              label="Password"
+            />
             <button className="login mt-2" type="submit">
               Log in
             </button>

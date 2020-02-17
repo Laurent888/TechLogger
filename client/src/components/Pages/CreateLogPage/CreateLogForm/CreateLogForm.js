@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./CreateLogForm.scss";
 import Calendar from "react-calendar";
+import { checkEmptyField } from "../../../../utils/utils";
+import { data } from "../../../../data";
 // REDUX
 import { connect } from "react-redux";
 import { addLog } from "../../../../redux/logs/logsActions";
@@ -41,20 +43,15 @@ const CreateLogForm = ({ addLog, currentUser, allUsers }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (
-      log.subject === "" ||
-      log.description === "" ||
-      log.priority === "" ||
-      log.category === "" ||
-      log.assignee === "" ||
-      log.dueDate === ""
-    ) {
+
+    if (checkEmptyField(log)) {
       setError(true);
       setTimeout(() => {
         setError(false);
       }, 3000);
       return;
     }
+
     const newLog = {
       ...log,
       createdBy: currentUser.userName
@@ -74,6 +71,17 @@ const CreateLogForm = ({ addLog, currentUser, allUsers }) => {
     return allUsers.map(user => (
       <option key={user.userName} value={user.userName}>
         {user.userName}
+      </option>
+    ));
+  };
+
+  const renderCategories = () => {
+    const categoriesLists = Object.keys(data.categories).map(
+      item => data.categories[item]
+    );
+    return categoriesLists.map(item => (
+      <option key={item.value} value={item.value}>
+        {item.label}
       </option>
     ));
   };
@@ -108,6 +116,8 @@ const CreateLogForm = ({ addLog, currentUser, allUsers }) => {
             value={log.description}
           />
         </div>
+
+        {/* PRIORITY FIELD */}
         <div className="form-group-select">
           <div className="form-group-select_item">
             <label htmlFor="priority">Priority</label>
@@ -124,6 +134,8 @@ const CreateLogForm = ({ addLog, currentUser, allUsers }) => {
               <option value="low">Low</option>
             </select>
           </div>
+
+          {/* CATEGORY FIELD */}
           <div className="form-group-select_item">
             <label htmlFor="category">Category</label>
             <select
@@ -133,12 +145,7 @@ const CreateLogForm = ({ addLog, currentUser, allUsers }) => {
               value={log.category}
             >
               <option value=""></option>
-              <option value="software">Software</option>
-              <option value="hardware">Hardware</option>
-              <option value="server">Server</option>
-              <option value="network">Network</option>
-              <option value="changeRequest">Change Request</option>
-              <option value="website">Website</option>
+              {renderCategories()}
             </select>
           </div>
           <div className="form-group-select_item">

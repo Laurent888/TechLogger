@@ -1,3 +1,5 @@
+import { data } from "../data";
+
 export const defineRiskColor = risk => {
   let color = "";
   switch (risk) {
@@ -13,7 +15,10 @@ export const defineRiskColor = risk => {
     case "critical":
       color = "danger";
       break;
+    default:
+      color = "blue";
   }
+
   return color;
 };
 
@@ -32,6 +37,17 @@ export const defineStatusColor = status => {
     case "closed":
       color = "closed";
       break;
+    default:
+      color = "progress";
   }
   return color;
+};
+
+export const checkEmptyField = object => {
+  const keys = Object.keys(object).filter(item => object[item] === "");
+  if (keys.length > 0) {
+    return true;
+  } else {
+    return false;
+  }
 };

@@ -18,24 +18,14 @@
     font-weight: 300;
   }
 
-  .group-form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-
-    input {
-      width: 50rem;
-      height: 5rem;
-      padding: 0.5rem;
-      border: 2px solid $grey-light;
-      border-radius: 5px;
-      font-size: 2rem;
-      color: $grey-dark;
-
-      &:focus {
-        outline: none;
-      }
-    }
+  .message {
+    width: 60%;
+    padding: 1rem 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(128, 46, 41);
+    color: $white-background;
+    text-align: center;
   }
 
   .signin-form {

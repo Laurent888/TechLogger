@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./SearchArea.scss";
 import { connect } from "react-redux";
 import CheckBox from "../../checkBox/CheckBox";
+import { data } from "../../../data";
 
 const SearchArea = ({ allUsers }) => {
   const [search, setSearch] = useState({
@@ -26,6 +27,18 @@ const SearchArea = ({ allUsers }) => {
       {user.userName}
     </option>
   ));
+
+  // RENDER THE CATEGORIES
+  const renderCategories = () => {
+    const categoriesLists = Object.keys(data.categories).map(
+      item => data.categories[item]
+    );
+    return categoriesLists.map(item => (
+      <option key={item.value} value={item.value}>
+        {item.label}
+      </option>
+    ));
+  };
 
   return (
     <div className="search">
@@ -52,7 +65,7 @@ const SearchArea = ({ allUsers }) => {
             </li>
             <li>
               <CheckBox
-                name="pregress"
+                name="progress"
                 label="In Progress"
                 clicked={handleChange}
                 checked={search.progress}
@@ -89,12 +102,7 @@ const SearchArea = ({ allUsers }) => {
             <label htmlFor="category">Category</label>
             <select id="category" name="category">
               <option value=""></option>
-              <option value="software">Software</option>
-              <option value="hardware">Hardware</option>
-              <option value="server">Server</option>
-              <option value="network">Network</option>
-              <option value="changeRequest">Change Request</option>
-              <option value="website">Website</option>
+              {renderCategories()}
             </select>
           </div>
           <div className="search-group">

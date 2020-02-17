@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./SignUpPage.scss";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { sign } from "jsonwebtoken";
+import FormInput from "../../../components/FormInput/FormInput";
 
 const SignUpPage = () => {
   const [signUp, setSignUp] = useState({
@@ -65,42 +65,27 @@ const SignUpPage = () => {
 
           {/* SIGN UP FORM */}
           <form className="signup-form mt-2" onSubmit={handleSubmit}>
-            <div className="group-form mb-1">
-              <label htmlFor="name" className="mb-1">
-                Name
-              </label>
-              <input
-                type="name"
-                name="userName"
-                id="userName"
-                value={signUp.userName}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="group-form mb-1">
-              <label htmlFor="email" className="mb-1">
-                Email
-              </label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                value={signUp.email}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="group-form mb-1">
-              <label htmlFor="password" className="mb-1">
-                Password
-              </label>
-              <input
-                type="password"
-                name="password"
-                id="password"
-                value={signUp.password}
-                onChange={handleChange}
-              />
-            </div>
+            <FormInput
+              type="text"
+              name="userName"
+              value={signUp.userName}
+              handleChange={handleChange}
+              label="Name"
+            />
+            <FormInput
+              type="email"
+              name="email"
+              value={signUp.email}
+              handleChange={handleChange}
+              label="Email"
+            />
+            <FormInput
+              type="password"
+              name="password"
+              value={signUp.password}
+              handleChange={handleChange}
+              label="Password"
+            />
             <button className="signup mt-2" type="submit">
               Sign up
             </button>
