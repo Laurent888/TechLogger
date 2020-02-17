@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "./CreateLogForm.scss";
+import Calendar from "react-calendar";
+// REDUX
 import { connect } from "react-redux";
 import { addLog } from "../../../../redux/logs/logsActions";
-import Calendar from "react-calendar";
 
-const CreateLogForm = ({ addLog, currentUser }) => {
+const CreateLogForm = ({ addLog, currentUser, allUsers }) => {
   const [log, setLog] = useState({
     subject: "",
     description: "",
@@ -67,6 +68,14 @@ const CreateLogForm = ({ addLog, currentUser }) => {
       assignee: "",
       dueDate: ""
     });
+  };
+
+  const renderAssignee = () => {
+    return allUsers.map(user => (
+      <option key={user.userName} value={user.userName}>
+        {user.userName}
+      </option>
+    ));
   };
 
   return (
@@ -141,8 +150,7 @@ const CreateLogForm = ({ addLog, currentUser }) => {
               value={log.assignee}
             >
               <option value=""></option>
-              <option value="marshall">Marshall</option>
-              <option value="ted">Ted</option>
+              {renderAssignee()}
             </select>
           </div>
           <div className="form-group-select_item">
@@ -174,7 +182,8 @@ const CreateLogForm = ({ addLog, currentUser }) => {
 };
 
 const mapStateToProps = state => ({
-  currentUser: state.user.currentUser
+  currentUser: state.user.currentUser,
+  allUsers: state.logs.allUsers
 });
 
 const mapDispatchToProps = dispatch => ({

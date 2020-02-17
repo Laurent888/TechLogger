@@ -6,7 +6,7 @@ import { editLog } from "../../../../../redux/logs/logsActions";
 import { connect } from "react-redux";
 
 const EditSection = props => {
-  const { toggleChangeStatusMenu, currentLog, editLogAction } = props;
+  const { toggleChangeStatusMenu, currentLog, editLogAction, allUsers } = props;
   const [editLog, setEditLog] = useState({
     status: "",
     assignee: ""
@@ -31,6 +31,14 @@ const EditSection = props => {
       id: currentLog._id
     };
     editLogAction(editData);
+  };
+
+  const renderAssignee = () => {
+    return allUsers.map(user => (
+      <option key={user.userName} value={user.userName}>
+        {user.userName}
+      </option>
+    ));
   };
 
   return (
@@ -60,8 +68,7 @@ const EditSection = props => {
             onChange={handleChange}
           >
             <option value=""></option>
-            <option value="ted">Ted</option>
-            <option value="marshall">Marshall</option>
+            {renderAssignee()}
           </select>
         </div>
         <div className="editSection-buttons">
@@ -86,7 +93,8 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  currentLog: state.logs.currentLog
+  currentLog: state.logs.currentLog,
+  allUsers: state.logs.allUsers
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditSection);

@@ -31,7 +31,21 @@ exports.createNewUser = async (req, res) => {
     });
   } catch (err) {
     res.status(400).json({
-      error: err.message
+      message: err.message
+    });
+  }
+};
+
+exports.getAllUsers = async (req, res) => {
+  try {
+    const allUsers = await UserModel.find().select("-password");
+    res.status(200).json({
+      message: "All users fetched",
+      data: allUsers
+    });
+  } catch (err) {
+    res.status(400).json({
+      message: err.message
     });
   }
 };

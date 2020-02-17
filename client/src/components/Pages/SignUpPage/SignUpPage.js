@@ -40,7 +40,7 @@ const SignUpPage = () => {
         "User created successfully, you can now login with your credentials."
       );
     } catch (err) {
-      console.log(err.response.data.data);
+      console.log(err.response.data);
     }
   };
 

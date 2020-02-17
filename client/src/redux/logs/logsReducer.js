@@ -2,7 +2,8 @@ import { types } from "./logsTypes";
 
 const INITIAL_STATE = {
   allLogs: [],
-  currentLog: {}
+  currentLog: {},
+  allUsers: []
 };
 
 const logsReducer = (state = INITIAL_STATE, action) => {
@@ -24,6 +25,11 @@ const logsReducer = (state = INITIAL_STATE, action) => {
         allLogs: state.allLogs.map(item =>
           item._id === action.payload._id ? action.payload : item
         )
+      };
+    case types.FETCH_ALL_USER_SUCCESS:
+      return {
+        ...state,
+        allUsers: [...action.payload]
       };
     default:
       return state;

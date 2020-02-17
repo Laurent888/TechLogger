@@ -10,6 +10,7 @@ function* addLog() {
 
 function* addLogAsync(log) {
   const payload = log.payload;
+  console.log(payload);
   yield axios
     .post("/api/log", payload)
     .then(() => console.log("Log added"))
@@ -51,7 +52,17 @@ function* fetchLogsAsync() {
   yield put({ type: types.FETCH_ALL_LOGS_SUCCESS, payload: logs.data });
 }
 
+// FETCH ALL THE USERS
+function* fetchAllUser() {
+  yield takeLatest(types.FETCH_ALL_USER_START, fetchAllUserAsync);
+}
+
+function* fetchAllUserAsync() {
+  const users = yield axios.get("/api/user");
+  yield put({ type: types.FETCH_ALL_USER_SUCCESS, payload: users.data.data });
+}
+
 // ROOT SAGA
 export default function* rootSaga() {
-  yield all([fetchLogs(), addLog(), editLog(), signInUser()]);
+  yield all([fetchLogs(), addLog(), editLog(), fetchAllUser(), signInUser()]);
 }

@@ -2,6 +2,7 @@ import React from "react";
 import "./LogPage.scss";
 import LogPreview from "./LogPreview/LogPreview";
 import TableHeader from "./TableHeader/TableHeader";
+import SearchArea from "../../layout/SearchArea/SearchArea";
 // Redux Import
 import { connect } from "react-redux";
 
@@ -12,7 +13,8 @@ const LogPage = ({ allLogs, match }) => {
   return (
     <div>
       <h1>Logs</h1>
-      <div className="logs-container mt-2">
+      <SearchArea />
+      <div className="logs-container mt-3">
         <table id="table-logs">
           <tbody>
             <TableHeader />

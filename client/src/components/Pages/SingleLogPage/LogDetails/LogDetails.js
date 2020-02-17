@@ -1,7 +1,7 @@
 import React from "react";
 import "./LogDetails.scss";
 import UserIcon from "../../../UserIcon/UserIcon";
-import { defineRiskColor } from "../../../../utils/utils";
+import { defineRiskColor, defineStatusColor } from "../../../../utils/utils";
 
 const LogDetails = ({ details }) => {
   const {
@@ -10,8 +10,10 @@ const LogDetails = ({ details }) => {
     assignee,
     category,
     createdAt,
+    createdBy,
     dueDate,
-    status
+    status,
+    _id
   } = details;
 
   // FORMATE DATE TO YYYY-MM-DD
@@ -21,15 +23,26 @@ const LogDetails = ({ details }) => {
   return (
     <div>
       <div className="logDetails-dueDate mt-3 pb-1">
+        <div className="logDetails-dueDate_id">
+          <p>
+            Log ID: <span>{_id}</span>
+          </p>
+        </div>
         <div className="logDetails-dueDate-label pr-1">Due Date: </div>
         <div className="logDetails-dueDate-date mr-2"> {dueDate}</div>
-        <div className="logDetails-dueDate-status mr-2">{status}</div>
+        <div
+          className={`logDetails-dueDate-status mr-2 badge-round-${defineStatusColor(
+            status
+          )}`}
+        >
+          {status === "progress" ? "In progress" : status}
+        </div>
       </div>
       <div className="logDetails">
         <div className="logDetails_header">
           <UserIcon />
           <div className="logDetails_header-details ml-1">
-            <h4>John Smith</h4>
+            <h4>{createdBy}</h4>
             <p className="logDetails_header-date">
               Created {createdDate} {createdTime}
             </p>

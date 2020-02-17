@@ -16,6 +16,11 @@
     justify-content: flex-end;
     align-items: center;
 
+    &_id {
+      margin-right: auto;
+      color: $grey-medium;
+    }
+
     &-label {
       font-weight: 300;
       color: rgb(197, 62, 52);

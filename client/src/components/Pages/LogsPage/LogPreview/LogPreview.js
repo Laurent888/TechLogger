@@ -1,7 +1,7 @@
 import React from "react";
 import "./LogPreview.scss";
 import { useHistory } from "react-router-dom";
-import { defineRiskColor } from "../../../../utils/utils";
+import { defineRiskColor, defineStatusColor } from "../../../../utils/utils";
 
 const LogPreview = ({ props, path }) => {
   const {
@@ -10,7 +10,8 @@ const LogPreview = ({ props, path }) => {
     priority,
     createdAt,
     dueDate,
-    registeredBy,
+    status,
+    createdBy,
     category,
     _id
   } = props;
@@ -33,7 +34,12 @@ const LogPreview = ({ props, path }) => {
       </td>
       <td className="logPreview_item">{createdDate}</td>
       <td className="logPreview_item">{dueDate}</td>
-      <td className="logPreview_item">{registeredBy}</td>
+      <td className="logPreview_item">
+        <div className={`badge-round-${defineStatusColor(status)}`}>
+          {status}
+        </div>
+      </td>
+      <td className="logPreview_item">{createdBy}</td>
     </tr>
   );
 };

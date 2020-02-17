@@ -10,6 +10,7 @@ const TableHeader = () => {
       <th className="priority">Priority</th>
       <th className="created">Created</th>
       <th className="due">Due date</th>
+      <th className="status">Status</th>
       <th className="registered">Registered by</th>
     </tr>
   );

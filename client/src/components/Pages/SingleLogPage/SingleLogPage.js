@@ -33,7 +33,6 @@ const SingleLogPage = props => {
 
   return (
     <div className="singleLogPage">
-      <h2>Single Log Page</h2>
       {isLoading ? (
         <h2>Loading...</h2>
       ) : (

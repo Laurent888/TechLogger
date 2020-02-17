@@ -16,7 +16,7 @@
 
   .assignee,
   .registered {
-    min-width: 20rem;
+    min-width: 17rem;
   }
 
   .priority {
@@ -25,6 +25,10 @@
 
   .created,
   .due {
-    min-width: 15rem;
+    min-width: 13rem;
+  }
+
+  .status {
+    padding-left: 3rem;
   }
 }

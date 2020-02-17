@@ -7,14 +7,15 @@ import LogPage from "../LogsPage/LogPage";
 import { Route, Switch } from "react-router-dom";
 import SingleLogPage from "../SingleLogPage/SingleLogPage";
 // Redux
-import { fetchAllData } from "../../../redux/logs/logsActions";
+import { fetchAllData, fetchAllUser } from "../../../redux/logs/logsActions";
 import { logoutUser } from "../../../redux/user/userActions";
 import { connect } from "react-redux";
 
 const MainPage = props => {
-  const { fetchAllData, logoutUser, currentUser } = props;
+  const { fetchAllData, logoutUser, currentUser, fetchAllUser } = props;
   useEffect(() => {
     fetchAllData();
+    fetchAllUser();
   }, []);
 
   const handleLogout = () => {
@@ -54,6 +55,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchAllData: () => dispatch(fetchAllData),
+  fetchAllUser: () => dispatch(fetchAllUser),
   logoutUser: () => dispatch(logoutUser)
 });
 
