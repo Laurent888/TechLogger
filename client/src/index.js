@@ -2,15 +2,19 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
+import { theme } from "./themeStyle";
+import { ThemeProvider } from "styled-components";
 // Redux
 import store from "./redux/store";
 import { Provider } from "react-redux";
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ThemeProvider>
   </Provider>,
   document.getElementById("root")
 );

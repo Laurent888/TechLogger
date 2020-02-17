@@ -14,8 +14,8 @@ const SearchArea = ({ allUsers }) => {
   });
 
   const handleChange = e => {
-    console.log("Clicked");
     setSearch({
+      ...search,
       [e.target.name]: e.target.checked
     });
   };

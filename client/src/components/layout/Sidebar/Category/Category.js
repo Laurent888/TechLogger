@@ -1,13 +1,13 @@
 import React from "react";
-import "./Category.scss";
+import { CustomCategory } from "./CategoryStyle";
 import { withRouter } from "react-router-dom";
 
 const Category = props => {
   return (
-    <div className="sidebar-button">
+    <CustomCategory>
       <span className={props.icon} />{" "}
       <div className="sidebar-button_label ml-2">{props.label}</div>
-    </div>
+    </CustomCategory>
   );
 };
 

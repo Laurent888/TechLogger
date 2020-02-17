@@ -1,19 +1,20 @@
 import React from "react";
-import "./CheckBox.scss";
+import { CustomCheckbox, CustomInput, CustomLabel } from "./checkBoxStyle";
+// import "./CheckBox.scss";
 
 const CheckBox = props => {
   const { name, label, clicked, checked } = props;
   return (
-    <div className="checkbox">
-      <input
+    <CustomCheckbox className="checkbox">
+      <CustomInput
         type="checkbox"
         name={name}
         id={name}
         checked={checked}
         onChange={clicked}
       />
-      <label htmlFor={name}>{label}</label>
-    </div>
+      <CustomLabel htmlFor={name}>{label}</CustomLabel>
+    </CustomCheckbox>
   );
 };
 
