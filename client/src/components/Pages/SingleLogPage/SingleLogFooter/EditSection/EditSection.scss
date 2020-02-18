@@ -3,6 +3,7 @@
 .editSection {
   width: 20rem;
   height: 100%;
+  padding: 2rem 0;
 
   &-form {
     width: 100%;
@@ -27,6 +28,23 @@
         font-size: 1.4rem;
         color: $grey-medium;
       }
+    }
+  }
+  .due-date {
+    width: 15rem;
+    height: 3rem;
+    padding: 0.6rem;
+    border-radius: 5px;
+    border: 1px solid $grey-medium;
+    margin-top: 0.5rem;
+    position: relative;
+    &:hover {
+      cursor: pointer;
+    }
+    &_calendar {
+      position: absolute;
+      bottom: 13rem;
+      right: -3rem;
     }
   }
 }

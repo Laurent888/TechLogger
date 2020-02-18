@@ -71,6 +71,10 @@ const SignInPage = ({ setCurrentUser }) => {
             Don't have a Tech Logger account ? <Link to="/signup">Sign up</Link>
           </p>
         </div>
+        <div className="credential">
+          <p>A test credential is also available:</p> <p>Email: ted@test.com</p>
+          <p>Password: 123123</p>{" "}
+        </div>
       </div>
     </div>
   );

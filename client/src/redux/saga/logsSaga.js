@@ -31,7 +31,6 @@ function* editLogAsync(log) {
   };
   const body = log.payload;
   const response = yield axios.put("/api/log", body, config);
-  yield console.log(response.data.data);
   yield put({ type: types.EDIT_LOG_SUCCESS, payload: response.data.data });
 }
 

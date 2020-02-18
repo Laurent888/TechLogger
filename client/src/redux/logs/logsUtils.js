@@ -45,27 +45,6 @@ export const filterLogsByAssignee = (logs, parameters) => {
 };
 
 // SORT
-
-// const compareDateDsc = (a, b) => {
-//   let comparison = 0;
-//   if (a[key] < b[key]) {
-//     return (comparison = 1);
-//   } else if (a[key] > b[key]) {
-//     return (comparison = -1);
-//   }
-//   return comparison;
-// };
-
-// const compareDateAsc = (a, b) => {
-//   let comparison = 0;
-//   if (a[key] > b[key]) {
-//     return (comparison = 1);
-//   } else if (a[key] < b[key]) {
-//     return (comparison = -1);
-//   }
-//   return comparison;
-// };
-
 export const sortArray = (logs, toggleSort, key) => {
   return logs.sort((a, b) => {
     let comparison = 0;

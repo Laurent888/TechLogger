@@ -7,6 +7,7 @@ import SearchArea from "../../layout/SearchArea/SearchArea";
 import { connect } from "react-redux";
 
 const LogPage = ({ filteredLogs, match }) => {
+  // Render the logs
   const renderedLogs = filteredLogs.map(log => (
     <LogPreview key={log._id} props={{ ...log }} path={match.path} />
   ));
