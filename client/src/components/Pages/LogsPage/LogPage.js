@@ -12,7 +12,6 @@ const LogPage = ({ filteredLogs, match }) => {
   ));
   return (
     <div>
-      <h1>Logs</h1>
       <SearchArea />
       <div className="logs-container mt-3">
         <table id="table-logs">

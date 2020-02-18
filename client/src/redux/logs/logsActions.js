@@ -37,3 +37,19 @@ export const filterLogsByAssignee = param => ({
   type: types.FILTER_LOGS_BY_ASSIGNEE,
   payload: param
 });
+
+export const sortLogsByDueDate = {
+  type: types.SORT_LOGS_BY_DUEDATE
+};
+export const sortLogsByStatus = {
+  type: types.SORT_LOGS_BY_STATUS
+};
+export const sortLogsByPriority = {
+  type: types.SORT_LOGS_BY_PRIORITY
+};
+export const sortLogsByAssignee = {
+  type: types.SORT_LOGS_BY_ASSIGNEE
+};
+export const sortLogsByCategory = {
+  type: types.SORT_LOGS_BY_CATEGORY
+};

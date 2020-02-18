@@ -28,7 +28,6 @@ export const filterLogsByStatus = (logs, parameters) => {
   return filteredLogs;
 };
 
-
 // FILTER BY CATEGORY
 export const filterLogsByCategory = (logs, parameters) => {
   if (parameters === "") {
@@ -43,4 +42,38 @@ export const filterLogsByAssignee = (logs, parameters) => {
     return logs;
   }
   return logs.filter(log => log.assignee === parameters);
+};
+
+// SORT
+
+// const compareDateDsc = (a, b) => {
+//   let comparison = 0;
+//   if (a[key] < b[key]) {
+//     return (comparison = 1);
+//   } else if (a[key] > b[key]) {
+//     return (comparison = -1);
+//   }
+//   return comparison;
+// };
+
+// const compareDateAsc = (a, b) => {
+//   let comparison = 0;
+//   if (a[key] > b[key]) {
+//     return (comparison = 1);
+//   } else if (a[key] < b[key]) {
+//     return (comparison = -1);
+//   }
+//   return comparison;
+// };
+
+export const sortArray = (logs, toggleSort, key) => {
+  return logs.sort((a, b) => {
+    let comparison = 0;
+    if (a[key] < b[key]) {
+      comparison = 1;
+    } else if (a[key] > b[key]) {
+      comparison = -1;
+    }
+    return toggleSort ? comparison : comparison * -1;
+  });
 };

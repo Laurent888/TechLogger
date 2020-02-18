@@ -1,19 +1,52 @@
 import React from "react";
 import "./TableHeader.scss";
+import { connect } from "react-redux";
+import {
+  sortLogsByDueDate,
+  sortLogsByStatus,
+  sortLogsByPriority,
+  sortLogsByAssignee,
+  sortLogsByCategory
+} from "../../../../redux/logs/logsActions";
 
-const TableHeader = () => {
+const TableHeader = props => {
+  const {
+    sortLogsByDueDate,
+    sortLogsByStatus,
+    sortLogsByAssignee,
+    sortLogsByCategory,
+    sortLogsByPriority
+  } = props;
   return (
     <tr className="table-header">
-      <th className="category">Category</th>
+      <th className="category" onClick={sortLogsByCategory}>
+        Category
+      </th>
       <th className="subject">Subject</th>
-      <th className="assignee">Assignee</th>
-      <th className="priority">Priority</th>
+      <th className="assignee" onClick={sortLogsByAssignee}>
+        Assignee
+      </th>
+      <th className="priority" onClick={sortLogsByPriority}>
+        Priority
+      </th>
       <th className="created">Created</th>
-      <th className="due">Due date</th>
-      <th className="status">Status</th>
+      <th className="due" onClick={sortLogsByDueDate}>
+        Due date
+      </th>
+      <th className="status" onClick={sortLogsByStatus}>
+        Status
+      </th>
       <th className="registered">Registered by</th>
     </tr>
   );
 };
 
-export default TableHeader;
+const mapDispatchToProps = dispatch => ({
+  sortLogsByDueDate: () => dispatch(sortLogsByDueDate),
+  sortLogsByStatus: () => dispatch(sortLogsByStatus),
+  sortLogsByAssignee: () => dispatch(sortLogsByAssignee),
+  sortLogsByCategory: () => dispatch(sortLogsByCategory),
+  sortLogsByPriority: () => dispatch(sortLogsByPriority)
+});
+
+export default connect(null, mapDispatchToProps)(TableHeader);
