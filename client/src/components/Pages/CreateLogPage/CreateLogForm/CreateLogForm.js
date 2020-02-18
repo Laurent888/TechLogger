@@ -18,7 +18,10 @@ const CreateLogForm = ({ addLog, currentUser, allUsers }) => {
   });
 
   const [showCalendar, setShowCalendar] = useState(false);
-  const [error, setError] = useState(false);
+  const [uiMessage, setUiMessage] = useState({
+    fail: false,
+    success: false
+  });
 
   const handleChange = e => {
     setLog({
@@ -45,9 +48,15 @@ const CreateLogForm = ({ addLog, currentUser, allUsers }) => {
     e.preventDefault();
 
     if (checkEmptyField(log)) {
-      setError(true);
+      setUiMessage({
+        fail: true,
+        success: false
+      });
       setTimeout(() => {
-        setError(false);
+        setUiMessage({
+          fail: false,
+          success: false
+        });
       }, 3000);
       return;
     }
@@ -65,6 +74,17 @@ const CreateLogForm = ({ addLog, currentUser, allUsers }) => {
       assignee: "",
       dueDate: ""
     });
+    setUiMessage({
+      fail: false,
+      success: true
+    });
+    setTimeout(() => {
+      setUiMessage({
+        fail: false,
+        success: false
+      });
+    }, 3000);
+    return;
   };
 
   const renderAssignee = () => {
@@ -179,9 +199,14 @@ const CreateLogForm = ({ addLog, currentUser, allUsers }) => {
           Add
         </button>
       </form>
-      {error && (
-        <div className="error-message">
+      {uiMessage.fail && (
+        <div className="message message-error">
           <h4>All fields are required</h4>
+        </div>
+      )}
+      {uiMessage.success && (
+        <div className="message message-success">
+          <h4>Log submitted</h4>
         </div>
       )}
     </div>

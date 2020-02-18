@@ -1,11 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./SearchArea.scss";
-import { connect } from "react-redux";
 import CheckBox from "../../checkBox/CheckBox";
 import { data } from "../../../data";
+// REDUX
+import { connect } from "react-redux";
+import {
+  filterLogsByStatus,
+  filterLogsByCategory,
+  filterLogsByAssignee
+} from "../../../redux/logs/logsActions";
 
-const SearchArea = ({ allUsers }) => {
-  const [search, setSearch] = useState({
+const SearchArea = ({
+  allUsers,
+  filterLogsByStatus,
+  filterLogsByCategory,
+  filterLogsByAssignee
+}) => {
+  const [searchStatus, setSearchStatus] = useState({
     notClosed: false,
     closed: false,
     open: false,
@@ -13,12 +24,44 @@ const SearchArea = ({ allUsers }) => {
     progress: false,
     all: false
   });
+  const [searchCategory, setSearchCategory] = useState("");
+  const [searchAssignee, setSearchAssignee] = useState("");
 
+  useEffect(() => {
+    filterLogsByStatus(searchStatus);
+    filterLogsByCategory(searchCategory);
+    filterLogsByAssignee(searchAssignee);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchStatus, searchCategory, searchAssignee]);
+
+  // HANDLE CHANGE FOR STATUS SEARCH
   const handleChange = e => {
-    setSearch({
-      ...search,
-      [e.target.name]: e.target.checked
-    });
+    if (e.target.name === "all" && e.target.checked === true) {
+      return setSearchStatus({
+        notClosed: false,
+        closed: false,
+        open: false,
+        resolved: false,
+        progress: false,
+        all: true
+      });
+    } else {
+      setSearchStatus({
+        ...searchStatus,
+        all: false,
+        [e.target.name]: e.target.checked
+      });
+    }
+  };
+
+  // HANDLE CHANGE FOR CATEGORY SEARCH
+  const handleChangeCategory = e => {
+    setSearchCategory(e.target.value);
+  };
+
+  // HANDLE CHANGE FOR ASSIGNEE SEARCH
+  const handleChangeAssignee = e => {
+    setSearchAssignee(e.target.value);
   };
 
   // RENDER ALL THE ASSIGNEES
@@ -52,7 +95,7 @@ const SearchArea = ({ allUsers }) => {
                 name="all"
                 label="All"
                 clicked={handleChange}
-                checked={search.all}
+                checked={searchStatus.all}
               />
             </li>
             <li>
@@ -60,7 +103,7 @@ const SearchArea = ({ allUsers }) => {
                 name="open"
                 label="Open"
                 clicked={handleChange}
-                checked={search.open}
+                checked={searchStatus.open}
               />
             </li>
             <li>
@@ -68,7 +111,7 @@ const SearchArea = ({ allUsers }) => {
                 name="progress"
                 label="In Progress"
                 clicked={handleChange}
-                checked={search.progress}
+                checked={searchStatus.progress}
               />
             </li>
             <li>
@@ -76,7 +119,7 @@ const SearchArea = ({ allUsers }) => {
                 name="resolved"
                 label="Resolved"
                 clicked={handleChange}
-                checked={search.resolved}
+                checked={searchStatus.resolved}
               />
             </li>
             <li>
@@ -84,7 +127,7 @@ const SearchArea = ({ allUsers }) => {
                 name="closed"
                 label="Closed"
                 clicked={handleChange}
-                checked={search.closed}
+                checked={searchStatus.closed}
               />
             </li>
             <li>
@@ -92,7 +135,7 @@ const SearchArea = ({ allUsers }) => {
                 name="notClosed"
                 label="Not Closed"
                 clicked={handleChange}
-                checked={search.notClosed}
+                checked={searchStatus.notClosed}
               />
             </li>
           </ul>
@@ -100,14 +143,24 @@ const SearchArea = ({ allUsers }) => {
         <div className="search-element mt-2">
           <div className="search-group">
             <label htmlFor="category">Category</label>
-            <select id="category" name="category">
+            <select
+              id="category"
+              name="category"
+              value={searchCategory}
+              onChange={handleChangeCategory}
+            >
               <option value=""></option>
               {renderCategories()}
             </select>
           </div>
           <div className="search-group">
             <label htmlFor="assignee">Assignee</label>
-            <select id="assignee" name="assignee">
+            <select
+              id="assignee"
+              name="assignee"
+              value={searchAssignee}
+              onChange={handleChangeAssignee}
+            >
               <option value=""></option>
               {renderedUsers}
             </select>
@@ -124,4 +177,10 @@ const mapStateToProps = state => ({
   allUsers: state.logs.allUsers
 });
 
-export default connect(mapStateToProps)(SearchArea);
+const mapDispatchToProps = dispatch => ({
+  filterLogsByStatus: param => dispatch(filterLogsByStatus(param)),
+  filterLogsByCategory: param => dispatch(filterLogsByCategory(param)),
+  filterLogsByAssignee: param => dispatch(filterLogsByAssignee(param))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchArea);

@@ -117,9 +117,8 @@
   }
 }
 
-.error-message {
+.message {
   display: block;
-  background-color: rgb(194, 27, 27);
   font-weight: 700;
   padding: 1rem 2rem;
   border-radius: 5px;
@@ -127,5 +126,12 @@
   text-align: center;
   h4 {
     color: $white-background;
+  }
+
+  &-error {
+    background-color: rgb(194, 27, 27);
+  }
+  &-success {
+    background-color: rgb(54, 150, 41);
   }
 }

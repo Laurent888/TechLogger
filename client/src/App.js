@@ -16,6 +16,7 @@ function App({ currentUser, setCurrentUserFromLS }) {
     }
     const user = JSON.parse(tempUser);
     setCurrentUserFromLS(user);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div className="App">

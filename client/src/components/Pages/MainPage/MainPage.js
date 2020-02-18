@@ -16,6 +16,7 @@ const MainPage = props => {
   useEffect(() => {
     fetchAllData();
     fetchAllUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleLogout = () => {

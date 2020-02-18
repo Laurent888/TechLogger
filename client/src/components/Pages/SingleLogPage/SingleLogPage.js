@@ -29,6 +29,7 @@ const SingleLogPage = props => {
       setLog(singleLog, setIsLoading(false));
       setCurrentLog(singleLog);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [allLogs]);
 
   return (

@@ -22,3 +22,18 @@ export const editLog = log => ({
   type: types.EDIT_LOG_START,
   payload: log
 });
+
+export const filterLogsByStatus = param => ({
+  type: types.FILTER_LOGS_BY_STATUS,
+  payload: param
+});
+
+export const filterLogsByCategory = param => ({
+  type: types.FILTER_LOGS_BY_CATEGORY,
+  payload: param
+});
+
+export const filterLogsByAssignee = param => ({
+  type: types.FILTER_LOGS_BY_ASSIGNEE,
+  payload: param
+});

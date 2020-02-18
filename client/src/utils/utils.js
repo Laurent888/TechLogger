@@ -1,5 +1,3 @@
-import { data } from "../data";
-
 export const defineRiskColor = risk => {
   let color = "";
   switch (risk) {

@@ -1,7 +1,13 @@
 import { types } from "./logsTypes";
+import {
+  filterLogsByStatus,
+  filterLogsByCategory,
+  filterLogsByAssignee
+} from "./logsUtils";
 
 const INITIAL_STATE = {
   allLogs: [],
+  filteredLogs: [],
   currentLog: {},
   allUsers: []
 };
@@ -11,7 +17,8 @@ const logsReducer = (state = INITIAL_STATE, action) => {
     case types.FETCH_ALL_LOGS_SUCCESS:
       return {
         ...state,
-        allLogs: [...action.payload]
+        allLogs: [...action.payload],
+        filteredLogs: [...action.payload]
       };
     case types.SET_CURRENT_LOG:
       return {
@@ -30,6 +37,25 @@ const logsReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         allUsers: [...action.payload]
+      };
+    case types.FILTER_LOGS_BY_STATUS:
+      return {
+        ...state,
+        filteredLogs: [...filterLogsByStatus(state.allLogs, action.payload)]
+      };
+    case types.FILTER_LOGS_BY_CATEGORY:
+      return {
+        ...state,
+        filteredLogs: [
+          ...filterLogsByCategory(state.filteredLogs, action.payload)
+        ]
+      };
+    case types.FILTER_LOGS_BY_ASSIGNEE:
+      return {
+        ...state,
+        filteredLogs: [
+          ...filterLogsByAssignee(state.filteredLogs, action.payload)
+        ]
       };
     default:
       return state;

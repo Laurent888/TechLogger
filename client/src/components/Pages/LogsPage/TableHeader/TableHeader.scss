@@ -13,10 +13,16 @@
       cursor: pointer;
     }
   }
-
   .assignee,
   .registered {
-    min-width: 17rem;
+    min-width: 15rem;
+  }
+  .category {
+    min-width: 15rem;
+  }
+  .subject {
+    min-width: 35rem;
+    overflow: hidden;
   }
 
   .priority {

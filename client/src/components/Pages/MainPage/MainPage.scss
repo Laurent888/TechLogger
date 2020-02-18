@@ -1,7 +1,7 @@
 @import "../../../variables";
 
 .mainPage {
-  width: 100vw;
+  min-width: 160rem;
   min-height: 100vh;
   background-color: $light-background;
   padding: 5rem;

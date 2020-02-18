@@ -6,8 +6,8 @@ import SearchArea from "../../layout/SearchArea/SearchArea";
 // Redux Import
 import { connect } from "react-redux";
 
-const LogPage = ({ allLogs, match }) => {
-  const renderedLogs = allLogs.map(log => (
+const LogPage = ({ filteredLogs, match }) => {
+  const renderedLogs = filteredLogs.map(log => (
     <LogPreview key={log._id} props={{ ...log }} path={match.path} />
   ));
   return (
@@ -30,7 +30,8 @@ const LogPage = ({ allLogs, match }) => {
 };
 
 const mapStateToProps = state => ({
-  allLogs: state.logs.allLogs
+  allLogs: state.logs.allLogs,
+  filteredLogs: state.logs.filteredLogs
 });
 
 export default connect(mapStateToProps)(LogPage);

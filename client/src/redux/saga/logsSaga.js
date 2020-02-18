@@ -10,7 +10,6 @@ function* addLog() {
 
 function* addLogAsync(log) {
   const payload = log.payload;
-  console.log(payload);
   yield axios
     .post("/api/log", payload)
     .then(() => console.log("Log added"))
