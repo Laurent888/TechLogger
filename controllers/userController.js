@@ -1,3 +1,6 @@
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
 const UserModel = require("../models/userModel");
 
 exports.createNewUser = async (req, res) => {
@@ -10,6 +13,10 @@ exports.createNewUser = async (req, res) => {
   }
 
   try {
+    // Encrypt the password
+    const salt = await bcrypt.genSalt(12);
+    const encryptPassword = await bcrypt.hash(password, salt);
+
     let user = await UserModel.findOne({ email });
     if (user) {
       return res.status(400).json({
@@ -20,7 +27,7 @@ exports.createNewUser = async (req, res) => {
     user = new UserModel({
       userName,
       email,
-      password
+      password: encryptPassword
     });
 
     await user.save();
