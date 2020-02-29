@@ -5,8 +5,10 @@ const logRouter = require("./routes/logRoutes");
 const userRouter = require("./routes/userRoutes");
 const authRouter = require("./routes/authRoutes");
 const path = require("path");
+const cors = require("cors");
 
 const app = express();
+app.use(cors());
 
 const connectDB = async () => {
   await mongoose

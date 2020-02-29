@@ -17,17 +17,13 @@ function* signInUserAsync(user) {
   };
   try {
     const userData = yield axios.post("/api/auth", payload, config);
-
     // SET THE USER INTO LOCAL STORAGE
-    yield localStorage.setItem(
-      "currentUser",
-      JSON.stringify(userData.data.data)
-    );
-
+    yield localStorage.setItem("token", userData.data.token);
     // SET THE CURRENT USER IN REDUX STATE
+    console.log(userData.data);
     yield put({
       type: userTypes.SET_CURRENT_USER_SUCCESS,
-      payload: userData.data.data
+      payload: userData.data.user
     });
   } catch (err) {
     const errMessage = err.response.data.message;

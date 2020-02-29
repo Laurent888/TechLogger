@@ -22,6 +22,7 @@ const MainPage = props => {
   const handleLogout = () => {
     logoutUser();
     localStorage.removeItem("currentUser");
+    localStorage.removeItem("token");
   };
 
   return (

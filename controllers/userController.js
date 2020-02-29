@@ -6,6 +6,7 @@ const UserModel = require("../models/userModel");
 exports.createNewUser = async (req, res) => {
   const { userName, email, password } = req.body;
 
+  // CHECK IF FIELDS ARE NOT EMPTY
   if (userName === "" || email === "" || password === "") {
     return res.status(400).json({
       error: "One of the field is empty"
@@ -32,9 +33,21 @@ exports.createNewUser = async (req, res) => {
 
     await user.save();
 
+    // Create Token
+    const payload = {
+      user: {
+        id: user._id
+      }
+    };
+
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: "1d"
+    });
+
     res.status(200).json({
       message: "User successfully created",
-      data: user
+      user,
+      token
     });
   } catch (err) {
     res.status(400).json({

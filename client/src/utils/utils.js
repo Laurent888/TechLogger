@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const defineRiskColor = risk => {
   let color = "";
   switch (risk) {
@@ -47,5 +49,15 @@ export const checkEmptyField = object => {
     return true;
   } else {
     return false;
+  }
+};
+
+export const setAuthToken = async token => {
+  if (token) {
+    axios.defaults.headers.common["x-auth-token"] = token;
+    const user = await axios.get("http://localhost:4000/api/auth");
+    return user.data.user;
+  } else {
+    delete axios.defaults.headers.common["x-auth-token"];
   }
 };
